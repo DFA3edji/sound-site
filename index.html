@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Максимальный звук</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        button {
+            font-size: 20px;
+            padding: 15px;
+            cursor: pointer;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="playBtn">Включить звук</button>
+    <audio id="audio" loop>
+        <source src="ston_9zi2M1N.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио.
+    </audio>
+
+    <script>
+        document.getElementById('playBtn').addEventListener('click', function() {
+            let audio = document.getElementById('audio');
+            audio.volume = 1; // Устанавливаем громкость на максимум
+            audio.play(); // Включаем звук
+
+            // Запрещаем ставить на паузу
+            audio.addEventListener('pause', function() {
+                audio.play();
+            });
+
+            // Прячем кнопку после запуска звука
+            this.style.display = 'none';
+
+            // Пытаемся запросить полный экран (чтобы привлечь внимание)
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            }
+        });
+    </script>
+
+</body>
+</html>
